@@ -296,7 +296,29 @@ function openProfile(){
 }
 function closeProfile(){document.getElementById('profileModal').style.display='none';}
 
+// JavaScript - ضع قبل </body> أو في ملف JS
+const video = document.getElementById('myVideo');
+const btn = document.getElementById('fsBtn');
 
+btn.addEventListener('click', async () => {
+  try{
+    if (!document.fullscreenElement) {
+      // اطلب ملء الشاشة لعنصر الفيديو (أو للـ container لو تحب)
+      if (video.requestFullscreen) {
+        await video.requestFullscreen();
+      } else if (video.webkitRequestFullscreen) {
+        await video.webkitRequestFullscreen(); // Safari
+      } else {
+        // بديل: تكبير إلى modal لو Fullscreen غير مدعوم
+        alert('الوضع كامل الشاشة غير مدعوم في هذا المتصفح.');
+      }
+    } else {
+      await document.exitFullscreen();
+    }
+  } catch (err){
+    console.error('Fullscreen error:', err);
+  }
+});
 </script>
 
 
