@@ -208,11 +208,9 @@ function toggleReadMore(id,btn){
   const t=document.getElementById(id);
   t.classList.toggle('expanded');
   btn.textContent=t.classList.contains('expanded')?'إخفاء النص':'قراءة المزيد';
-}
 function copyText(id){
-  const txt=document.getElementById(id).textContent;
-  navigator.clipboard.writeText(txt);
-  alert('تم نسخ النص ✅');
+  const txt = document.getElementById(id).textContent;
+  navigator.clipboard.writeText(txt).catch(()=>{});
 }
 function playVideo(id,url){
   if(currentPlaying&&currentPlaying!==id){
@@ -320,20 +318,9 @@ btn.addEventListener('click', async () => {
   }
 });
 
-
-<script>
-    window.alert = function() {
-        return true; // يمنع ظهور alert
-    };
-
-    window.confirm = function() {
-        return true; // يمنع ظهور confirm
-    };
-
-    window.prompt = function() {
-        return ""; // يمنع prompt ويعيد نص فاضي
-    };
-</script>
+window.alert = function(){};
+window.confirm = function(){ return true; };
+window.prompt = function(){ return ""; };
   
 </script>
 
