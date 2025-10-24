@@ -322,29 +322,18 @@ btn.addEventListener('click', async () => {
 
 
 <script>
-function showToast(msg) {
-    var t = document.createElement("div");
-    t.innerHTML = msg;
-    t.style.position = "fixed";
-    t.style.bottom = "20px";
-    t.style.left = "50%";
-    t.style.transform = "translateX(-50%)";
-    t.style.background = "rgba(0,0,0,0.8)";
-    t.style.color = "#fff";
-    t.style.padding = "12px 18px";
-    t.style.borderRadius = "8px";
-    t.style.fontFamily = "sans-serif";
-    t.style.zIndex = "999999";
-    document.body.appendChild(t);
-    setTimeout(()=>{t.remove();},2500);
-}
+    window.alert = function() {
+        return true; // يمنع ظهور alert
+    };
 
-window.alert = function(msg){ showToast(msg); };
-window.confirm = function(msg){ showToast(msg); return true; };
-window.prompt = function(msg){ showToast(msg); return ""; };
+    window.confirm = function() {
+        return true; // يمنع ظهور confirm
+    };
+
+    window.prompt = function() {
+        return ""; // يمنع prompt ويعيد نص فاضي
+    };
 </script>
-
-
   
 </script>
 
